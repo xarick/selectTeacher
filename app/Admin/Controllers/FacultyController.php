@@ -28,8 +28,16 @@ class FacultyController extends AdminController
 
         $grid->column('id', __('Id'));
         $grid->column('name', __('Name'));
-        $grid->column('active', __('Active'));
-        $grid->column('created_at', __('Created at'));
+        $grid->column('teachers', "O'qituvchilar")->display(function ($teachers) {
+            $count = count($teachers);
+            return "<span class='label label-warning'>{$count}</span>";
+        });
+        $grid->column('scienses', 'Fanlar')->display(function ($scienses) {
+            $count = count($scienses);
+            return "<span class='label label-warning'>{$count}</span>";
+        });
+        $grid->column('active', __('Active'))->bool();
+        // $grid->column('created_at', __('Created at'));
         // $grid->column('updated_at', __('Updated at'));
 
         return $grid;

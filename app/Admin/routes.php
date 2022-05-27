@@ -17,5 +17,7 @@ Route::group([
     $router->resource('years', YearController::class);
     $router->resource('courses', CourseController::class);
     $router->resource('groups', GroupController::class);
+    $router->resource('scienses', ScienseController::class);
+    $router->resource('teacher-to-scienses', TeacherToScienseController::class);
 
 });

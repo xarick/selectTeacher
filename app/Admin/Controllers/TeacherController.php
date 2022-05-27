@@ -77,7 +77,6 @@ class TeacherController extends AdminController
     protected function form()
     {
         $form = new Form(new Teacher());
-
         $faculties = Faculty::orderBy('name', 'ASC')->pluck('name','id')->all();
 
         // $form->number('faculty_id', __('Faculty id'));

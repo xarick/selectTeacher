@@ -2,21 +2,22 @@
 
 namespace App\Admin\Controllers;
 
-use App\Models\Group;
+use App\Models\Faculty;
+use App\Models\Sciense;
 use Encore\Admin\Controllers\AdminController;
+use Encore\Admin\Facades\Admin;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
-use Encore\Admin\Facades\Admin;
 
-class GroupController extends AdminController
+class ScienseController extends AdminController
 {
     /**
      * Title for current resource.
      *
      * @var string
      */
-    protected $title = 'Group';
+    protected $title = 'Sciense';
 
     /**
      * Make a grid builder.
@@ -25,14 +26,12 @@ class GroupController extends AdminController
      */
     protected function grid()
     {
-        $grid = new Grid(new Group());
+        $grid = new Grid(new Sciense());
 
         $grid->column('id', __('Id'));
+        $grid->column('faculty.name', __('Fakultet'));
         $grid->column('name', __('Name'));
-        $grid->column('com_science', __('Majburiy fan'));
-        $grid->column('opt_science', __('Ixtiyoriy fan'));
         // $grid->column('created_by', __('Created by'));
-        // $grid->column('admin.name', __('Admin'));
         $grid->column('active', __('Active'))->bool();
         // $grid->column('created_at', __('Created at'));
         // $grid->column('updated_at', __('Updated at'));
@@ -48,12 +47,11 @@ class GroupController extends AdminController
      */
     protected function detail($id)
     {
-        $show = new Show(Group::findOrFail($id));
+        $show = new Show(Sciense::findOrFail($id));
 
         $show->field('id', __('Id'));
+        $show->field('faculty_id', __('Faculty id'));
         $show->field('name', __('Name'));
-        $show->field('com_science', __('Majburiy fan'));
-        $show->field('opt_science', __('Ixtiyoriy fan'));
         $show->field('created_by', __('Created by'));
         $show->field('active', __('Active'));
         $show->field('created_at', __('Created at'));
@@ -69,11 +67,12 @@ class GroupController extends AdminController
      */
     protected function form()
     {
-        $form = new Form(new Group());
+        $form = new Form(new Sciense());
+        $faculties = Faculty::orderBy('name', 'ASC')->pluck('name','id')->all();
 
+        // $form->number('faculty_id', __('Faculty id'));
+        $form->select('faculty_id', 'Fakultet')->options($faculties);
         $form->text('name', __('Name'));
-        $form->number('com_science', __('Majburiy fan'))->default(0);
-        $form->number('opt_science', __('Ixtiyoriy fan'))->default(0);
         // $form->number('created_by', __('Created by'));
         $form->hidden('created_by');
         $form->saving(function (Form $form) {
