@@ -19,5 +19,7 @@ Route::group([
     $router->resource('groups', GroupController::class);
     $router->resource('scienses', ScienseController::class);
     $router->resource('teacher-to-scienses', TeacherToScienseController::class);
+    $router->resource('select-to-group-ms', SelectToGroupMController::class);
+    $router->resource('select-to-group-os', SelectToGroupOController::class);
 
 });
