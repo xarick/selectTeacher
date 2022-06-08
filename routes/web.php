@@ -23,6 +23,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [BaseController::class, 'index'])->name('dashboard');
 
     Route::get('/sciense-mand', [StudentController::class, 'scienseM'])->name('student.scienseM');
+    Route::get('/sciense-opt', [StudentController::class, 'scienseO'])->name('student.scienseO');
 });
 
 require __DIR__ . '/auth.php';

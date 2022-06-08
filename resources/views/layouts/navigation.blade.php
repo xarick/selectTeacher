@@ -15,6 +15,12 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         Bosh sahifa
                     </x-nav-link>
+                    <x-nav-link :href="route('student.scienseM')" :active="request()->routeIs('student.scienseM')">
+                        Majburiy fanlar
+                    </x-nav-link>
+                    <x-nav-link :href="route('student.scienseO')" :active="request()->routeIs('student.scienseO')">
+                        Ixtiyoriy fanlar
+                    </x-nav-link>
                 </div>
             </div>
 
