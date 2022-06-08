@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Models\Course;
 use App\Models\Group;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
@@ -27,7 +28,8 @@ class GroupController extends AdminController
     {
         $grid = new Grid(new Group());
 
-        $grid->column('id', __('Id'));
+        // $grid->column('id', __('Id'));
+        $grid->column('course.name', __('Kurs'));
         $grid->column('name', __('Name'));
         $grid->column('com_science', __('Majburiy fan'));
         $grid->column('opt_science', __('Ixtiyoriy fan'));
@@ -51,6 +53,7 @@ class GroupController extends AdminController
         $show = new Show(Group::findOrFail($id));
 
         $show->field('id', __('Id'));
+        $show->field('course_id', __('Kurs'));
         $show->field('name', __('Name'));
         $show->field('com_science', __('Majburiy fan'));
         $show->field('opt_science', __('Ixtiyoriy fan'));
@@ -71,6 +74,9 @@ class GroupController extends AdminController
     {
         $form = new Form(new Group());
 
+        $couses = Course::orderBy('name', 'ASC')->pluck('name','id')->all();
+
+        $form->select('course_id', 'Kurs')->options($couses);
         $form->text('name', __('Name'));
         $form->number('com_science', __('Majburiy fan'))->default(0);
         $form->number('opt_science', __('Ixtiyoriy fan'))->default(0);

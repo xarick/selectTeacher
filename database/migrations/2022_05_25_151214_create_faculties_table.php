@@ -13,6 +13,7 @@ class CreateFacultiesTable extends Migration
      */
     public function up()
     {
+        // kafedra deyilishi kerak edi
         Schema::create('faculties', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();

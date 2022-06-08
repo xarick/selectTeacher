@@ -15,7 +15,7 @@ class FacultyController extends AdminController
      *
      * @var string
      */
-    protected $title = 'Faculty';
+    protected $title = 'Kafedralar';
 
     /**
      * Make a grid builder.

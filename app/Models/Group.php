@@ -13,4 +13,9 @@ class Group extends Model
     {
         return $this->belongsTo(AdminUser::class, 'created_by');
     }
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class, 'course_id');
+    }
 }
