@@ -27,7 +27,7 @@ class FacultyController extends AdminController
         $grid = new Grid(new Faculty());
 
         $grid->column('id', __('Id'));
-        $grid->column('name', __('Name'));
+        $grid->column('name', __('Nomi'));
         $grid->column('teachers', "O'qituvchilar")->display(function ($teachers) {
             $count = count($teachers);
             return "<span class='label label-warning'>{$count}</span>";

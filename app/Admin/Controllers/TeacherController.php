@@ -31,11 +31,11 @@ class TeacherController extends AdminController
         $grid->column('id', __('Id'));
         // $grid->column('faculty_id', __('Faculty id'));
         $grid->column('faculty.name', __('Fakultet'));
-        $grid->column('first_name', __('First name'));
-        $grid->column('last_name', __('Last name'));
-        $grid->column('middle_name', __('Middle name'));
-        $grid->column('phone', __('Phone'));
-        $grid->column('teacher_degree', __('Teacher degree'));
+        $grid->column('first_name', __('Ism'));
+        $grid->column('last_name', __('Familiya'));
+        $grid->column('middle_name', __('Otasi ismi'));
+        $grid->column('phone', __('telefon'));
+        $grid->column('teacher_degree', __('Ilmiy daraja'));
         // $grid->column('created_by', __('Created by'));
         // $grid->column('active', __('Active'));
         // $grid->column('created_at', __('Created at'));

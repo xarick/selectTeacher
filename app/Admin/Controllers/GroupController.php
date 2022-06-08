@@ -30,7 +30,7 @@ class GroupController extends AdminController
 
         // $grid->column('id', __('Id'));
         $grid->column('course.name', __('Kurs'));
-        $grid->column('name', __('Name'));
+        $grid->column('name', __('Nomi'));
         $grid->column('com_science', __('Majburiy fan'));
         $grid->column('opt_science', __('Ixtiyoriy fan'));
         // $grid->column('created_by', __('Created by'));

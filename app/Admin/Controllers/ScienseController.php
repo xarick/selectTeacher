@@ -30,7 +30,7 @@ class ScienseController extends AdminController
 
         $grid->column('id', __('Id'));
         $grid->column('faculty.name', __('Kafedra'));
-        $grid->column('name', __('Name'));
+        $grid->column('name', __('Nomi'));
         // $grid->column('created_by', __('Created by'));
         $grid->column('active', __('Active'))->bool();
         // $grid->column('created_at', __('Created at'));

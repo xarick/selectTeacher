@@ -27,9 +27,9 @@ class CourseController extends AdminController
         $grid = new Grid(new Course());
 
         $grid->column('id', __('Id'));
-        $grid->column('name', __('Name'));
+        $grid->column('name', __('Nomi'));
         $grid->column('active', __('Active'))->bool();
-        $grid->column('created_at', __('Created at'));
+        // $grid->column('created_at', __('Created at'));
         // $grid->column('updated_at', __('Updated at'));
 
         return $grid;

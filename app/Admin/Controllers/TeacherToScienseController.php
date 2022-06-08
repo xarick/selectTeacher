@@ -31,13 +31,13 @@ class TeacherToScienseController extends AdminController
         $grid = new Grid(new TeacherToSciense());
 
         $grid->column('id', __('Id'));
-        $grid->column('year.name', __('Year'));
+        $grid->column('year.name', __('Yil'));
         // $grid->column('teacher.last_name', __('Teacher'));
         $grid->column('FIO')->display(function () {
             return $this->teacher->first_name.' '.$this->teacher->last_name;
         });
-        $grid->column('sciense.name', __('Sciense id'));
-        $grid->column('limit', __('Limit'));
+        $grid->column('sciense.name', __('Fan'));
+        $grid->column('limit', __('Dars soni'));
         // $grid->column('created_by', __('Created by'));
         $grid->column('active', __('Active'))->bool();
         // $grid->column('created_at', __('Created at'));
