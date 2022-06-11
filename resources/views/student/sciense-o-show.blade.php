@@ -21,12 +21,6 @@
                             </div>
                         </form>
                     </div>
-                    <div class="my-auto">
-                        {{-- <a href="{{ route('ad.holiday.create') }}"
-                            class="text-white bg-violet-700 hover:bg-violet-800 font-medium rounded text-sm px-4 py-2">
-                            Қўшиш
-                        </a> --}}
-                    </div>
                 </div>
                 <div class="mx-2">
                     @include('library.alerts')
@@ -35,16 +29,13 @@
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                         <tr>
                             <th scope="col" class="px-6 py-3">
+                                Yil
+                            </th>
+                            <th scope="col" class="px-6 py-3">
                                 Fan va o'qituvchi
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Guruh
-                            </th>
-                            <th scope="col" class="px-6 py-3">
                                 Холати
-                            </th>
-                            <th scope="col" class="px-6 py-3 w-56">
-                                <span class="sr-only"></span>
                             </th>
                         </tr>
                     </thead>
@@ -52,13 +43,13 @@
                         @foreach ($scienses as $item)
                             <tr class="bg-white border-b hover:bg-gray-50">
                                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                    {{ $item->tts->teacher->last_name }}
-                                    {{ $item->tts->teacher->first_name }}
-                                    ({{ $item->tts->sciense->name }})
+                                    {{ $item->year->name }}
                                 </th>
-                                <td class="px-6 py-4">
-                                    {{ $item->group->name }}
-                                </td>
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                    {{ $item->stgo->tts->sciense->name }}
+                                    ({{ $item->stgo->tts->teacher->last_name }}
+                                    {{ $item->stgo->tts->teacher->first_name }})
+                                </th>
                                 <td class="px-6 py-4">
                                     @if ($item->active)
                                         <span
@@ -71,12 +62,6 @@
                                             Aктив емас
                                         </span>
                                     @endif
-                                </td>
-                                <td class="px-6 py-4 flex">
-                                    <a href="{{ route('student.selectToStudent', $item->id) }}"
-                                        class="text-gray-900 bg-white border border-gray-300 font-medium rounded text-xs px-2 py-1 mr-2">
-                                        Fanni tanlash
-                                    </a>
                                 </td>
                             </tr>
                         @endforeach

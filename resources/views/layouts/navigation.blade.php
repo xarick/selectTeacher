@@ -21,6 +21,9 @@
                     <x-nav-link :href="route('student.scienseO')" :active="request()->routeIs('student.scienseO')">
                         Ixtiyoriy fanlar
                     </x-nav-link>
+                    <x-nav-link :href="route('student.selectToStudentShow')" :active="request()->routeIs('student.selectToStudentShow')">
+                        Tanlangan fanlar
+                    </x-nav-link>
                 </div>
             </div>
 

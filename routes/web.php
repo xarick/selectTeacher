@@ -24,6 +24,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/sciense-mand', [StudentController::class, 'scienseM'])->name('student.scienseM');
     Route::get('/sciense-opt', [StudentController::class, 'scienseO'])->name('student.scienseO');
+    Route::get('/select-to-student/{id}', [StudentController::class, 'selectToStudent'])->name('student.selectToStudent');
+    Route::get('/selected-scienses', [StudentController::class, 'selectToStudentShow'])->name('student.selectToStudentShow');
 });
 
 require __DIR__ . '/auth.php';
