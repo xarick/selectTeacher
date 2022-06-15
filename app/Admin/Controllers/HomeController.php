@@ -13,8 +13,8 @@ class HomeController extends Controller
     public function index(Content $content)
     {
         return $content
-            ->title('Talim tizimi platformasi')
-            ->description('')
+            ->title('Kredit modul tizimi uchun platforma')
+            // ->description('')
             // ->row(Dashboard::title())
             ->row(function (Row $row) {
 

@@ -796,9 +796,6 @@ select {
 .w-full {
   width: 100%;
 }
-.w-56 {
-  width: 14rem;
-}
 .w-48 {
   width: 12rem;
 }
@@ -810,6 +807,9 @@ select {
 }
 .w-6 {
   width: 1.5rem;
+}
+.w-56 {
+  width: 14rem;
 }
 .max-w-xl {
   max-width: 36rem;
@@ -988,10 +988,6 @@ select {
 .bg-violet-700 {
   --tw-bg-opacity: 1;
   background-color: rgb(109 40 217 / var(--tw-bg-opacity));
-}
-.bg-red-700 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(185 28 28 / var(--tw-bg-opacity));
 }
 .fill-current {
   fill: currentColor;
@@ -1300,10 +1296,6 @@ select {
 .hover\:bg-violet-800:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(91 33 182 / var(--tw-bg-opacity));
-}
-.hover\:bg-red-800:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(153 27 27 / var(--tw-bg-opacity));
 }
 .hover\:text-gray-500:hover {
   --tw-text-opacity: 1;
