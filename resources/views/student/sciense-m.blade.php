@@ -2,8 +2,12 @@
     <div class="max-w-7xl mx-auto px-2 py-4">
         <div class="bg-white border-b border-gray-200 p-6 overflow-hidden rounded">
             <div class="relative overflow-x-auto">
-                <div class="py-4 px-2 flex align-middle justify-between">
-                    <div>
+                @if ($scount == auth()->user()->group->com_science)
+                    <div class="text-center text-2xl">
+                        Majburiy fan o'qituvchilari tanlab bo'lindi
+                    </div>
+                @else
+                    <div class="py-4 px-2 flex align-middle justify-between">
                         <form method="get">
                             <label for="table-search" class="sr-only">Qidirish</label>
                             <div class="relative mt-1">
@@ -21,61 +25,69 @@
                             </div>
                         </form>
                     </div>
-                    <div class="my-auto">
-                        {{-- <a href="{{ route('ad.holiday.create') }}"
-                            class="text-white bg-violet-700 hover:bg-violet-800 font-medium rounded text-sm px-4 py-2">
-                            Қўшиш
-                        </a> --}}
+                    <div class="mx-2">
+                        @include('library.alerts')
                     </div>
-                </div>
-                <div class="mx-2">
-                    @include('library.alerts')
-                </div>
-                <table class="w-full text-sm text-left text-gray-500">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50">
-                        <tr>
-                            <th scope="col" class="px-6 py-3">
-                                Fan va o'qituvchi
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Guruh
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Холати
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($scienses as $item)
-                            <tr class="bg-white border-b hover:bg-gray-50">
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                    {{ $item->tts->teacher->last_name }}
-                                    {{ $item->tts->teacher->first_name }}
-                                    ({{ $item->tts->sciense->name }})
+                    <table class="w-full text-sm text-left text-gray-500">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">
+                                    Fan
                                 </th>
-                                <td class="px-6 py-4">
-                                    {{ $item->group->name }}
-                                </td>
-                                <td class="px-6 py-4">
-                                    @if ($item->active)
-                                        <span
-                                            class="bg-green-100 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">
-                                            Aктив
-                                        </span>
-                                    @else
-                                        <span
-                                            class="bg-red-100 text-red-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">
-                                            Aктив емас
-                                        </span>
-                                    @endif
-                                </td>
+                                <th scope="col" class="px-6 py-3">
+                                    O'qituvchi
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Guruh
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Холати
+                                </th>
+                                <th scope="col" class="px-6 py-3 w-56">
+                                    <span class="sr-only"></span>
+                                </th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-                <div class="m-4">
-                    {{ $scienses->links() }}
-                </div>
+                        </thead>
+                        <tbody>
+                            @foreach ($scienses as $item)
+                                <tr class="bg-white border-b hover:bg-gray-50">
+                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                        {{ $item->tts->sciense->name }}
+                                    </th>
+                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                        {{ $item->tts->teacher->last_name }}
+                                        {{ $item->tts->teacher->first_name }}
+                                    </th>
+                                    <td class="px-6 py-4">
+                                        {{ $item->group->name }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        @if ($item->active)
+                                            <span
+                                                class="bg-green-100 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">
+                                                Aктив
+                                            </span>
+                                        @else
+                                            <span
+                                                class="bg-red-100 text-red-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">
+                                                Aктив емас
+                                            </span>
+                                        @endif
+                                    </td>
+                                    <td class="px-6 py-4 flex">
+                                        <a href="{{ route('student.selectToStudentM', $item->id) }}"
+                                            class="text-gray-900 bg-white border border-gray-300 font-medium rounded text-xs px-2 py-1 mr-2">
+                                            Fanni tanlash
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    <div class="m-4">
+                        {{ $scienses->links() }}
+                    </div>
+                @endif
             </div>
         </div>
     </div>

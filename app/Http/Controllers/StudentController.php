@@ -7,6 +7,7 @@ use App\Models\Group;
 use App\Models\SelectToGroupM;
 use App\Models\SelectToGroupO;
 use App\Models\SelectToStudent;
+use App\Models\SelectToStudentM;
 use App\Models\User;
 use App\Models\Year;
 use Illuminate\Http\Request;
@@ -30,7 +31,10 @@ class StudentController extends Controller
             'name' => $name,
         ]);
 
-        return view('student.sciense-m', compact('scienses'));
+        $last = Year::where('active', true)->orderBy('id', 'DESC')->first();
+        $scount = SelectToStudentM::where('year_id', $last->id)->where('student_id', auth()->user()->id)->count();
+
+        return view('student.sciense-m', compact('scienses', 'scount'));
     }
 
     public function selectToStudentM($id)
