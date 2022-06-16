@@ -33,7 +33,10 @@ class SelectToGroupMController extends AdminController
         $grid->column('id', __('Id'));
         $grid->column('year.name', __('Yil'));
         $grid->column('Fan')->display(function () {
-            return $this->tts->sciense->name . " - " . $this->tts->teacher->last_name . " " . $this->tts->teacher->first_name . " " . $this->tts->teacher->middle_name;
+            return $this->tts->sciense->name;
+        });
+        $grid->column("O'qituvchi")->display(function () {
+            return $this->tts->teacher->last_name . " " . $this->tts->teacher->first_name . " " . $this->tts->teacher->middle_name;
         });
         $grid->column('group.name', __('Guruh'));
         $grid->column('active', __('Active'))->bool();

@@ -28,16 +28,23 @@ class SelectToStudentController extends AdminController
 
         $grid->column('id', __('Id'));
         $grid->column('year.name', __('Yil'));
+        // $grid->column('student.group.name', __('Guruh'));
+        $grid->column('Guruh')->display(function () {
+            return $this->student->group->name;
+        });
         $grid->column('student.name', __('Student'));
         // $grid->column('stgo', __('Tanlangan Fan'));
         $grid->column('Tanlangan Fan')->display(function () {
-            return $this->stgo->tts->sciense->name . " (" . $this->stgo->tts->teacher->last_name . " " . $this->stgo->tts->teacher->first_name . " " . $this->stgo->tts->teacher->middle_name . ")";
+            return $this->stgo->tts->sciense->name;
+        });
+        $grid->column("O'qituvchi")->display(function () {
+            return $this->stgo->tts->teacher->last_name . " " . $this->stgo->tts->teacher->first_name . " " . $this->stgo->tts->teacher->middle_name;
         });
         $grid->column('active', __('Active'))->bool();
         // $grid->column('created_at', __('Created at'));
         // $grid->column('updated_at', __('Updated at'));
 
-        
+
         $grid->model()->latest();
 
         // $grid->disableRowSelector();
