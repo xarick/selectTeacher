@@ -27,12 +27,29 @@ class SelectToStudentMController extends AdminController
         $grid = new Grid(new SelectToStudentM());
 
         $grid->column('id', __('Id'));
-        $grid->column('year_id', __('Year id'));
-        $grid->column('student_id', __('Student id'));
-        $grid->column('select_to_group_m_id', __('Select to group m id'));
+        $grid->column('year.name', __('Yil'));
+        // $grid->column('student.group.name', __('Guruh'));
+        $grid->column('Guruh')->display(function () {
+            return $this->student->group->name;
+        });
+        $grid->column('student.name', __('Student'));
+        // $grid->column('stgo', __('Tanlangan Fan'));
+        $grid->column('Tanlangan Fan')->display(function () {
+            return $this->stgo->tts->sciense->name;
+        });
+        $grid->column("O'qituvchi")->display(function () {
+            return $this->stgo->tts->teacher->last_name . " " . $this->stgo->tts->teacher->first_name . " " . $this->stgo->tts->teacher->middle_name;
+        });
         $grid->column('active', __('Active'))->bool();
         // $grid->column('created_at', __('Created at'));
         // $grid->column('updated_at', __('Updated at'));
+
+
+        $grid->model()->latest();
+
+        // $grid->disableRowSelector();
+        // $grid->disableColumnSelector();
+        $grid->disableCreateButton();
 
         return $grid;
     }

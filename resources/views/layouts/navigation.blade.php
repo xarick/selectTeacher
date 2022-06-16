@@ -18,11 +18,14 @@
                     <x-nav-link :href="route('student.scienseM')" :active="request()->routeIs('student.scienseM')">
                         Majburiy fanlar
                     </x-nav-link>
+                    <x-nav-link :href="route('student.selectToStudentShowM')" :active="request()->routeIs('student.selectToStudentShowM')">
+                        Tanlangan fanlar (Maj)
+                    </x-nav-link>
                     <x-nav-link :href="route('student.scienseO')" :active="request()->routeIs('student.scienseO')">
                         Ixtiyoriy fanlar
                     </x-nav-link>
                     <x-nav-link :href="route('student.selectToStudentShowO')" :active="request()->routeIs('student.selectToStudentShowO')">
-                        Tanlangan fanlar
+                        Tanlangan fanlar (Ixt)
                     </x-nav-link>
                 </div>
             </div>
