@@ -30,7 +30,7 @@ class TeacherController extends AdminController
 
         $grid->column('id', __('Id'));
         // $grid->column('faculty_id', __('Faculty id'));
-        $grid->column('faculty.name', __('Fakultet'));
+        $grid->column('faculty.name', __('Kafedra'));
         $grid->column('first_name', __('Ism'));
         $grid->column('last_name', __('Familiya'));
         $grid->column('middle_name', __('Otasi ismi'));
