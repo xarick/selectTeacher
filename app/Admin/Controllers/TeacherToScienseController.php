@@ -34,7 +34,7 @@ class TeacherToScienseController extends AdminController
         $grid->column('year.name', __('Yil'));
         // $grid->column('teacher.last_name', __('Teacher'));
         $grid->column('FIO')->display(function () {
-            return $this->teacher->first_name.' '.$this->teacher->last_name;
+            return $this->teacher->first_name . ' ' . $this->teacher->last_name;
         });
         $grid->column('sciense.name', __('Fan'));
         $grid->column('limit', __('Dars soni'));
@@ -42,6 +42,15 @@ class TeacherToScienseController extends AdminController
         $grid->column('active', __('Active'))->bool();
         // $grid->column('created_at', __('Created at'));
         // $grid->column('updated_at', __('Updated at'));
+
+        // check
+        $auth_id = Admin::user()->id;
+        if ($auth_id == 1) {
+            $grid->model()->orderBy('name', 'ASC');
+        } else {
+            $grid->model()->where('created_by', $auth_id)->orderBy('name', 'ASC');
+        }
+        // check
 
         return $grid;
     }
@@ -55,6 +64,16 @@ class TeacherToScienseController extends AdminController
     protected function detail($id)
     {
         $show = new Show(TeacherToSciense::findOrFail($id));
+
+        // check
+        $auth_id = Admin::user()->id;
+        if ($auth_id != 1) {
+            $data = TeacherToSciense::findOrFail($id);
+            if ($data->created_by != $auth_id) {
+                return abort(404);
+            }
+        }
+        // 
 
         $show->field('id', __('Id'));
         $show->field('year_id', __('Year id'));

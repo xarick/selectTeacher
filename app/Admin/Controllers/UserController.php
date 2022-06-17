@@ -39,6 +39,15 @@ class UserController extends AdminController
         // $grid->column('created_at', __('Created at'));
         // $grid->column('updated_at', __('Updated at'));
 
+        // check
+        $auth_id = Admin::user()->id;
+        if ($auth_id == 1) {
+            $grid->model()->orderBy('name', 'ASC');
+        } else {
+            $grid->model()->where('faculty_id', $auth_id)->orderBy('name', 'ASC');
+        }
+        // check
+
         return $grid;
     }
 
@@ -51,6 +60,16 @@ class UserController extends AdminController
     protected function detail($id)
     {
         $show = new Show(User::findOrFail($id));
+
+        // check
+        $auth_id = Admin::user()->id;
+        if ($auth_id != 1) {
+            $data = User::findOrFail($id);
+            if ($data->faculty_id != $auth_id) {
+                return abort(404);
+            }
+        }
+        // 
 
         $show->field('id', __('Id'));
         $show->field('faculty_id', __('Faculty id'));
@@ -75,7 +94,7 @@ class UserController extends AdminController
     {
         $form = new Form(new User());
 
-        $groups = Group::orderBy('name', 'ASC')->pluck('name','id')->all();
+        $groups = Group::orderBy('name', 'ASC')->pluck('name', 'id')->all();
 
         // $form->number('faculty_id', __('Faculty id'));
         $form->hidden('faculty_id');
@@ -88,7 +107,7 @@ class UserController extends AdminController
         $form->email('email', __('Email'));
         $form->datetime('email_verified_at', __('Email verified at'))->default(date('Y-m-d H:i:s'));
         $form->password('password', __('Password'));
-        $form->saving(function($form) {
+        $form->saving(function ($form) {
             $form->password = bcrypt($form->password);
         });
         // $form->password('remember_token', __('Remember token'));

@@ -41,6 +41,15 @@ class TeacherController extends AdminController
         // $grid->column('created_at', __('Created at'));
         // $grid->column('updated_at', __('Updated at'));
 
+        // check
+        $auth_id = Admin::user()->id;
+        if ($auth_id == 1) {
+            $grid->model()->orderBy('name', 'ASC');
+        } else {
+            $grid->model()->where('created_by', $auth_id)->orderBy('name', 'ASC');
+        }
+        // check
+
         return $grid;
     }
 
@@ -53,6 +62,16 @@ class TeacherController extends AdminController
     protected function detail($id)
     {
         $show = new Show(Teacher::findOrFail($id));
+
+        // check
+        $auth_id = Admin::user()->id;
+        if ($auth_id != 1) {
+            $data = Teacher::findOrFail($id);
+            if ($data->created_by != $auth_id) {
+                return abort(404);
+            }
+        }
+        // 
 
         $show->field('id', __('Id'));
         $show->field('faculty_id', __('Faculty id'));
@@ -77,7 +96,7 @@ class TeacherController extends AdminController
     protected function form()
     {
         $form = new Form(new Teacher());
-        $faculties = Faculty::orderBy('name', 'ASC')->pluck('name','id')->all();
+        $faculties = Faculty::orderBy('name', 'ASC')->pluck('name', 'id')->all();
 
         // $form->number('faculty_id', __('Faculty id'));
         $form->select('faculty_id', 'Fakultet')->options($faculties);

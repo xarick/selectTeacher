@@ -39,6 +39,15 @@ class GroupController extends AdminController
         // $grid->column('created_at', __('Created at'));
         // $grid->column('updated_at', __('Updated at'));
 
+        // check
+        $auth_id = Admin::user()->id;
+        if ($auth_id == 1) {
+            $grid->model()->orderBy('name', 'ASC');
+        } else {
+            $grid->model()->where('created_by', $auth_id)->orderBy('name', 'ASC');
+        }
+        // check
+
         return $grid;
     }
 
@@ -51,6 +60,16 @@ class GroupController extends AdminController
     protected function detail($id)
     {
         $show = new Show(Group::findOrFail($id));
+
+        // check
+        $auth_id = Admin::user()->id;
+        if ($auth_id != 1) {
+            $data = Group::findOrFail($id);
+            if ($data->created_by != $auth_id) {
+                return abort(404);
+            }
+        }
+        // 
 
         $show->field('id', __('Id'));
         $show->field('course_id', __('Kurs'));
@@ -74,7 +93,7 @@ class GroupController extends AdminController
     {
         $form = new Form(new Group());
 
-        $couses = Course::orderBy('name', 'ASC')->pluck('name','id')->all();
+        $couses = Course::orderBy('name', 'ASC')->pluck('name', 'id')->all();
 
         $form->select('course_id', 'Kurs')->options($couses);
         $form->text('name', __('Name'));

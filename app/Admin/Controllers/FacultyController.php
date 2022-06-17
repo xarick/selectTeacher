@@ -43,11 +43,14 @@ class FacultyController extends AdminController
         // $grid->column('created_at', __('Created at'));
         // $grid->column('updated_at', __('Updated at'));
 
-        if (Admin::user()->id == 1) {
+        // check
+        $auth_id = Admin::user()->id;
+        if ($auth_id == 1) {
             $grid->model()->orderBy('name', 'ASC');
         } else {
-            $grid->model()->where('created_by', Admin::user()->id)->orderBy('name', 'ASC');
+            $grid->model()->where('created_by', $auth_id)->orderBy('name', 'ASC');
         }
+        // check
 
         return $grid;
     }
@@ -62,12 +65,15 @@ class FacultyController extends AdminController
     {
         $show = new Show(Faculty::findOrFail($id));
 
-        if (Admin::user()->id != 1) {
+        // check
+        $auth_id = Admin::user()->id;
+        if ($auth_id != 1) {
             $data = Faculty::findOrFail($id);
-            if ($data->created_by != Admin::user()->id) {
+            if ($data->created_by != $auth_id) {
                 return abort(404);
             }
         }
+        // 
 
         $show->field('id', __('Id'));
         $show->field('created_by', __('Created by'));

@@ -41,6 +41,15 @@ class SelectToGroupMController extends AdminController
         $grid->column('group.name', __('Guruh'));
         $grid->column('active', __('Active'))->bool();
 
+        // check
+        $auth_id = Admin::user()->id;
+        if ($auth_id == 1) {
+            $grid->model()->orderBy('name', 'ASC');
+        } else {
+            $grid->model()->where('created_by', $auth_id)->orderBy('name', 'ASC');
+        }
+        // check
+
         return $grid;
     }
 
@@ -53,6 +62,16 @@ class SelectToGroupMController extends AdminController
     protected function detail($id)
     {
         $show = new Show(SelectToGroupM::findOrFail($id));
+
+        // check
+        $auth_id = Admin::user()->id;
+        if ($auth_id != 1) {
+            $data = SelectToGroupM::findOrFail($id);
+            if ($data->created_by != $auth_id) {
+                return abort(404);
+            }
+        }
+        // 
 
         $show->field('id', __('Id'));
         $show->field('year_id', __('Year id'));
