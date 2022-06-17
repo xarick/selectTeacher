@@ -9,6 +9,11 @@ class Faculty extends Model
 {
     use HasFactory;
 
+    public function admin()
+    {
+        return $this->belongsTo(AdminUser::class, 'created_by');
+    }
+
     public function teachers()
     {
         return $this->hasMany(Teacher::class);

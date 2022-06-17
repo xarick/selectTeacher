@@ -18,6 +18,7 @@ class CreateFacultiesTable extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->boolean('active')->default(1);
+            $table->unsignedBigInteger('created_by');
             $table->timestamps();
         });
     }
