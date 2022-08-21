@@ -44,7 +44,7 @@ class TeacherController extends AdminController
         // check
         $auth_id = Admin::user()->id;
         if ($auth_id == 1) {
-            $grid->model()->orderBy('name', 'ASC');
+            $grid->model()->orderBy('first_name', 'ASC');
         } else {
             $grid->model()->where('created_by', $auth_id)->orderBy('name', 'ASC');
         }
@@ -71,7 +71,7 @@ class TeacherController extends AdminController
                 return abort(404);
             }
         }
-        // 
+        //
 
         $show->field('id', __('Id'));
         $show->field('faculty_id', __('Faculty id'));

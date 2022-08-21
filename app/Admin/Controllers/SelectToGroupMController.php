@@ -44,9 +44,9 @@ class SelectToGroupMController extends AdminController
         // check
         $auth_id = Admin::user()->id;
         if ($auth_id == 1) {
-            $grid->model()->orderBy('name', 'ASC');
+            $grid->model()->orderBy('id', 'ASC');
         } else {
-            $grid->model()->where('created_by', $auth_id)->orderBy('name', 'ASC');
+            $grid->model()->where('created_by', $auth_id)->orderBy('id', 'DESC');
         }
         // check
 
@@ -71,7 +71,7 @@ class SelectToGroupMController extends AdminController
                 return abort(404);
             }
         }
-        // 
+        //
 
         $show->field('id', __('Id'));
         $show->field('year_id', __('Year id'));
